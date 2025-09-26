@@ -15,3 +15,10 @@ console.log(myConcat("；", "大象", "长颈鹿", "狮子", "猎豹"));
 
 console.log(myConcat("。", "智者", "罗勒", "牛至", "胡椒", "香菜"));
 // "智者。罗勒。牛至。胡椒。香菜。"
+
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+
+const arr = multiply(2, 1, 2, 3);
+console.log(arr); // [2, 4, 6]
