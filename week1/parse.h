@@ -1,6 +1,6 @@
 #include <regex>
 #include <string>
-// 2412305 李林 see： https://github.com/linull24/SHU-OOP-25/tree/cpp
+// 2412305 李林 see： https://github.com/linull24/SHU-OOP-25/tree/main
 #define RAW_REG R"(^\s*([+\-]?\s*\d*\.?\d*)\s*x\^2\s*(?:(\+|-)\s*(\d*\.?\d*)\s*x\s*)?(?:(\+|-)\s*(\d*\.?\d+))?\s*$)"
 class parse {
  public:
