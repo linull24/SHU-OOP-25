@@ -57,3 +57,46 @@ Promise 实例对象，所以本教程将首先说明怎样使用 Promise，再�
         })
         .catch(error => console.log('请求失败:', error));
 }
+//题目：红灯三秒亮一次，绿灯一秒亮一次，黄灯2秒亮一次；如何让三个灯不断交替重复亮灯？（用Promse实现）
+//三个亮灯函数已经存在：
+{
+    function red(){
+        console.log('red');
+    }
+    function green(){
+        console.log('green');
+    }
+    function yellow(){
+        console.log('yellow');
+    }
+    const lightShowRed = () => new Promise(resolve => {
+        setTimeout(() => {
+            red();
+            resolve();
+        }, 3000);
+    });
+    
+    const lightShowGreen = () => new Promise(resolve => {
+        setTimeout(() => {
+            green();
+            resolve();
+        }, 1000);
+    });
+    
+    const lightShowYellow = () => new Promise(resolve => {
+        setTimeout(() => {
+            yellow();
+            resolve();
+        }, 2000);
+    });
+    
+    const trafficLight = () => {
+        lightShowRed()
+            .then(() => lightShowGreen())
+            .then(() => lightShowYellow())
+            .then(() => trafficLight());
+    };
+    
+    trafficLight(); // 取消注释以启动
+    
+}
