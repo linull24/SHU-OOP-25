@@ -2,7 +2,7 @@
 #include <iostream>
 #include <memory>
 
-void testComplex(const complex<double>& c1, const complex<double>& c2) {
+void testComplex(complex<double>& c1, complex<double>& c2) {
     std::cout << "c1: " << c1.getReal() << " + " << c1.getImag() << "i\n";
     std::cout << "c2: " << c2.getReal() << " + " << c2.getImag() << "i\n";
     std::cout << "c1 模长: " << c1.getModulus() << "\n";
