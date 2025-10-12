@@ -25,8 +25,8 @@ int main() {
     auto eq2 = std::make_unique<QuadraticEquation>(1.0f, 0, 1); //这就是在堆上
     test(*eq2, "x^2 + 1 = 0 (混合类型)");
     
-    QuadraticEquation eq3(1, 2);
-    test(eq3, "x^2 + 2x = 0");
-    
+    auto eq3 = new QuadraticEquation(1, 2);
+    test(*eq3, "x^2 + 2x = 0");
+    delete eq3;
     return 0;
 }
