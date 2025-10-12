@@ -1,35 +1,43 @@
-# IDE and Editor files
+# CMake (GitHub official template)
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+CMakeUserPresets.json
+build/
+
+# Executables
+*.exe
+*.out
+a.out
+*.app
+
+# Object files
+*.o
+*.obj
+
+# Libraries
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS generated files
+# OS
 .DS_Store
-.DS_Store?
 ._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db
-
-# Build files
-build/
-dist/
-*.o
-*.exe
-*.out
-a.out
-
-# Archive files
-*.zip
-*.tar.gz
-*.rar
-
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.temp
