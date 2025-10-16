@@ -8,16 +8,20 @@
 
 ---
 
-拓展学习：
+Extrnsion:
 
-* [X] 现代CPP
+* [X] modern CPP
   * [X] Concepts
   * [ ] ...?
 * [ ] QEMU Object Module
+* [ ] chromium containers....?
+* [ ] MariaDB String
+  * [ ] Other MariaDB example
 * [ ] CPP virtual function
 * [ ] CPP CTTI
 * [ ] CPP vtable
 * [ ] CPP mixin
+* [ ] CPP Coroutines
 * [ ] Rust beginning
 * [ ] Rust trait
 * [ ] Metaobject Protocol
