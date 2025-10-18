@@ -21,7 +21,6 @@ Extension:
 * [ ] MariaDB String
   * [ ] Other MariaDB example
 * [ ] CPP virtual function
-* [ ] CPP CTTI
 * [ ] CPP mixin
 * [ ] CPP Coroutines
 * [ ] Rust beginning
