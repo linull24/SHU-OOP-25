@@ -8,20 +8,46 @@
 
 ---
 
-Extrnsion:
+Extension:
 
-* [X] modern CPP
+* [ ] modern CPP
   * [X] Concepts
+  * [ ] Coroutines
+  * [ ] RAII
   * [ ] ...?
 * [ ] QEMU Object Module
+* [ ] CPP vtable
 * [ ] chromium containers....?
 * [ ] MariaDB String
   * [ ] Other MariaDB example
 * [ ] CPP virtual function
 * [ ] CPP CTTI
-* [ ] CPP vtable
 * [ ] CPP mixin
 * [ ] CPP Coroutines
 * [ ] Rust beginning
 * [ ] Rust trait
 * [ ] Metaobject Protocol
+* [ ] Aspect Oriented Programming
+* [ ] Types of OOP:
+  * [X] Class
+  * [ ] No inheritance/Delegation-Based OOP
+  * [ ] prototype-based programming
+  * [ ] Design by Contract
+  * [ ] Agent-oriented programming
+  * [ ] Role-Oriented Programming
+  * [ ] Trait / Mixin-Based Composition
+  * [ ] Message-Passing / Actor Model
+    * [ ] QT Messenging Beginning
+  * [ ] Dynamic Dispatch
+* [ ] Object Patterns
+  * [X] Functions
+  * [ ] Immutable object
+  * [ ] First-class object
+  * [ ] Container object
+  * [ ] Factory object
+  * [ ] Metaobject
+  * [ ] Prototype object
+* [ ] Lisp ?
+* [ ] Principles
+  * [ ] SOLID
+  * [ ] GRASP
