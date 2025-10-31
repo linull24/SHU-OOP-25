@@ -34,9 +34,11 @@ func sum(numbers ...int) int {
 ```
 
 C++有没有？
+
 > 有的兄弟有的。
 
 > 通过AI拿到一系列相关的术语
+>
 > 1. `typename...`, `Args&&...`, `std::forward`, `sizeof...`, `static_assert`
 > 2. ：`std::initializer_list`（同类型场景）、数组展开技巧
 > 3. ：折叠表达式（C++17）、Concepts（C++20）
@@ -69,11 +71,13 @@ __END_DECLS
 主要用于在模版中对应的声明可变的参数数量。
 
 ## `Args&&...`
+
 ### 转发引用forwarding reference
 
 首先，需要注意的是，在模版中，行为与传统的左值右值有不同。
 
 在cpp中转发的行为：
+
 ```cpp
 T&  &   → T&
 T&  &&  → T&
@@ -81,50 +85,64 @@ T&& &   → T&
 T&& &&  → T&&
 ```
 
-那么在这个场景之下，传递给`T...`的都会被“完美转发”
+那么在这个场景之下，传递给 `T...`的都会被“保留原来的结构”
 
-## `std::forward`与`std::move`
+## `std::forward`与 `std::move`
+
 `std::move` 将东西强制转换为右值
 
-`std::forward` 的作用类似`Args&&...`，调用的过程保留左值右值。
+`std::forward` 的作用类似 `Args&&...`，调用的过程保留左值右值。
 
+## `assert`和 `concept`的区别
 
-## `assert`和`concept`的区别
 ### `assert`
+
 调试用的东西，在**运行时**检查
+
 ```cpp
 x=114514;
 assert(x >=0 && x <100);
 // 运行时如果x不满足条件,就报错
 ```
+
 ### `static_assert`
+
 调试用的东西，在**编译时**检查,在cpp11引入
+
 ```cpp
 static_assert(sizeof(int) == 4, "This code requires int to be 4 bytes)
 // 编译时报错
 ```
+
 ### `concept`
+
 在cpp20引入，主要是用于模版的检查。
+
 > Concept其实是一个语法糖，它的本质可以认为是一个模板类型的bool变量。定义一个concept本质上是在定义一个bool类型的编译期的变量。使用一个concept本质上是利用SFINAE机制来约束模板类型。
 > SFINAE:Substitution Failure Is Not An Error
 
 网上找到了例子：
+
 ```cpp
 template<std::integral T>  
 T add_original(T a, T b) {
     return a + b;
 }
 ```
+
 $$
 \equiv
 $$
+
 ```
 template <typename T, std::enable_if_t<std::is_integral_v<T>, int> = 0>
 T add_original(T a, T b) {
     return a + b;
 }
 ```
+
 ## std::initializer_list
+
 ```cpp
 void print(std::initializer_list<int> list) {
     for (int x : list) std::cout << x << " ";
@@ -133,12 +151,12 @@ void print(std::initializer_list<int> list) {
 print({1, 2, 3});  
 //内部是 const T[]
 ```
+
 ## 折叠表达式
 
-
-| 类型 | 语法 | 展开 |例 |
-|------|------|-------------------------------|--------------------------|
-| **一元左折叠** | `(pack op ...)` | `((a op b) op c)` | `(1 + 2 + 3)` → `((1 + 2) + 3) = 6` |
-| **一元右折叠** | `(... op pack)` | `(a op (b op c))` | `(... + 1, 2, 3)` → `(1 + (2 + 3)) = 6` |
+| 类型                 | 语法                      | 展开                          | 例                                                     |
+| -------------------- | ------------------------- | ----------------------------- | ------------------------------------------------------ |
+| **一元左折叠** | `(pack op ...)`         | `((a op b) op c)`           | `(1 + 2 + 3)` → `((1 + 2) + 3) = 6`               |
+| **一元右折叠** | `(... op pack)`         | `(a op (b op c))`           | `(... + 1, 2, 3)` → `(1 + (2 + 3)) = 6`           |
 | **二元左折叠** | `(init op ... op pack)` | `(((init op a) op b) op c)` | `(0 + ... + 1, 2, 3)` → `(((0 + 1) + 2) + 3) = 6` |
 | **二元右折叠** | `(pack op ... op init)` | `(a op (b op (c op init)))` | `(1, 2, 3 - ... - 0)` → `(1 - (2 - (3 - 0))) = 2` |
