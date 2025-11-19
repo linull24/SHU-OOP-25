@@ -1,4 +1,5 @@
 #include "myString.hpp"
+#include <cstring>
 
 myString::myString() {}
 
@@ -41,19 +42,6 @@ const char& myString::operator[](size_t index) const {
     return getRaw()[index];
 }
 
-myString myString::substr(size_t pos, size_t count) const {
-    if (pos >= getSize()) return myString();
-    
-    size_t actualCount = (pos + count > getSize()) ? getSize() - pos : count;
-    char* temp = new char[actualCount + 1];
-    strncpy(temp, getRaw() + pos, actualCount);
-    temp[actualCount] = '\0';
-    
-    myString result(temp);
-    delete[] temp;
-    return result;
-}
-
 size_t myString::length() const {
     return getSize();
 }
@@ -71,6 +59,19 @@ int myString::find(char ch) const {
         }
     }
     return -1;
+}
+
+myString myString::substr(size_t pos, size_t count) const {
+    if (pos >= getSize()) return myString();
+    
+    size_t actualCount = (pos + count > getSize()) ? getSize() - pos : count;
+    char* temp = new char[actualCount + 1];
+    strncpy(temp, getRaw() + pos, actualCount);
+    temp[actualCount] = '\0';
+    
+    myString result(temp);
+    delete[] temp;
+    return result;
 }
 
 myString myString::operator+(const myString& other) const {
