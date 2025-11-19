@@ -1,5 +1,4 @@
-#include "./myString.hpp"
-#include <cstring>
+#include "myString.hpp"
 
 myStringBinData::myStringBinData() : memType(SSO) {
     storage.shortstr.length = 0;
@@ -29,9 +28,9 @@ void myStringBinData::setLength(size_t len) {
 }
 
 void myStringBinData::setRawByIndex(const char* raw, size_t i) {
-    if (memType == PILE) {
+    if (memType == PILE && i < storage.longstr.capacity) {
         storage.longstr.heapstr[i] = *raw;
-    } else {
+    } else if (memType == SSO && i < 23) {
         storage.shortstr.data[i] = *raw;
     }
 }
@@ -42,16 +41,25 @@ const char* myStringBinData::getRaw() const {
 
 void myStringBinData::setRaw(const char* raw, size_t length) {
     if (length < 23) {
-        memType = SSO;
+        if (memType == PILE) {
+            delete[] storage.longstr.heapstr;
+            memType = SSO;
+        }
         storage.shortstr.length = length;
-        std::memcpy(storage.shortstr.data, raw, length);
+        strncpy(storage.shortstr.data, raw, length);
         storage.shortstr.data[length] = '\0';
     } else {
-        memType = PILE;
+        if (memType == SSO) {
+            memType = PILE;
+            storage.longstr.capacity = length + 1;
+            storage.longstr.heapstr = new char[storage.longstr.capacity];
+        } else if (storage.longstr.capacity <= length) {
+            delete[] storage.longstr.heapstr;
+            storage.longstr.capacity = length + 1;
+            storage.longstr.heapstr = new char[storage.longstr.capacity];
+        }
         storage.longstr.length = length;
-        storage.longstr.capacity = length + 1;
-        storage.longstr.heapstr = new char[storage.longstr.capacity];
-        std::memcpy(storage.longstr.heapstr, raw, length);
+        strncpy(storage.longstr.heapstr, raw, length);
         storage.longstr.heapstr[length] = '\0';
     }
 }

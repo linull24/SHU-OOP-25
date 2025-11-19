@@ -52,8 +52,8 @@ public:
     void copy(const char * ptr, size_t size,size_t pos);
     void clear();
     void swap(myStringInterface& other);
-    virtual myStringInterface* substr(size_t pos, size_t count) const;
     bool checkCapacity(size_t size) const;
+    bool isEmpty();
 private:
     bool Capacity;
 };
@@ -69,7 +69,12 @@ public:
     bool operator==(const myString& other) const;
     char& operator[](size_t index);
     const char& operator[](size_t index) const;
-    myString* substr(size_t pos, size_t count) const override;
+    myString substr(size_t pos, size_t count) const;
+    size_t length() const;
+    const char* c_str() const;
+    int find(char ch) const;
+    myString operator+(const myString& other) const;
+    bool operator!=(const myString& other) const;
     friend class myStringProxy;
 };
 class myStringProxy
