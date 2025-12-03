@@ -1,0 +1,109 @@
+\section{\LaTeX~Writting Env}
+\begin{frame}{Overleaf}
+  \begin{itemize}
+    \item 打开https://cn.overleaf.com/
+    \item 登陆账户
+    \item 在template区域搜索相关的模板
+  \end{itemize}
+  \includegraphics[width=1.1\linewidth]{pic/screenshot5.png}
+\end{frame}
+
+
+\begin{frame}{Overleaf}
+  \begin{itemize}
+    \item 选择Open template
+  \end{itemize}
+  \includegraphics[width=1.1\linewidth]{pic/screenshot6.png}
+\end{frame}
+
+\begin{frame}{Overleaf}
+  \centering
+  \includegraphics[width=1.2\linewidth]{pic/screenshot7.png}
+  \par
+\end{frame}
+\begin{frame}{Overleaf编译选项调整}
+  Sometimes,something shit happens\dots\includegraphics[width=0.03\linewidth]{pic/image.png} \\
+  还记得一开始我们讲的不同引擎的区别吗？ \\
+  到这里去设置
+  \includegraphics[width=1.2\linewidth]{pic/screenshot8.png}
+  \par
+\end{frame}
+\begin{frame}{Overleaf编译选项调整}
+  \centering
+  \includegraphics[width=0.4\linewidth]{pic/screenshot9.png}
+  \par
+\end{frame}
+\begin{frame}{Overleaf编译选项调整}
+  \begin{itemize}
+    \item 然后就可以正常编译了\includegraphics[width=0.03\linewidth]{pic/tmp_filei_f24.png}
+    \item 虽然但是，你会发现很多项目会超过免费的20s时间
+    \item 甚至我们活动的beamer幻灯片(本文档)都会超时\includegraphics[width=0.05\linewidth]{pic/image.png}
+    \item 所以我们也需要更好的方案\dots
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{VisualStudio Code}
+  \includegraphics[width=0.3\linewidth]{pic/vscode.jpg}
+  \begin{itemize}
+    \item Free is best
+    \item Unlimited
+    \item Better integrated with local environments
+    \item 
+    \item VScode features usable(copilot,etc.)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{VisualStudio Code}
+  \begin{itemize}
+    \item 从插件拓展选项中可以直接安装
+          \includegraphics[width=1\linewidth]{pic/workshop.png}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{VisualStudio Code}
+  \begin{columns}
+    \begin{column}{0.3\textwidth}
+      LaTex Workshop插件也有很强的功能，包括
+      \begin{itemize}
+        \item 自动补全
+        \item 控制编译
+        \item 大纲
+        \item \textbf{符号速查}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.8\textwidth}
+      \centering
+      \includegraphics[width=1.1\linewidth]{pic/screenshot10.png}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{VisualStudio Code}
+  \begin{itemize}
+    \footnotesize
+    \item 在构建\LaTeX~项目的选项中可以选择使用的编译器类型
+    \item 可以通过latexmkrc文件设置编译的选项\includegraphics[width=0.03\linewidth]{pic/tmp_filei_f24.png}
+
+  \end{itemize}
+  比如
+  \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+# 使用 XeLaTeX 编译 PDF
+$pdf_mode = 5;
+# 启用 shell escape
+$xelatex = "xelatex -shell-escape -file-line-error -interaction=nonstopmode %O %S";
+# 自动运行 BibTeX
+$bibtex_use = 1.5;
+# 最多重试5轮
+$max_repeat = 5;
+# 清理常用临时文件
+$clean_ext = "synctex.gz nav snm vrb";
+\end{lstlisting}
+  \footnotesize
+  如果想深入了解，有两个网站可以参考:
+  \begin{itemize}
+    \scriptsize
+    \item \url{https://mgeier.github.io/latexmk.html}
+    \item {\small\href{https://www2.yukawa.kyoto-u.ac.jp/~koudai.sugimoto/dokuwiki/doku.php?id=latex:latexmkの設定}{https://www2.yukawa.kyoto-u.ac.jp/.../latex:latexmkの設定}}
+  \end{itemize}
+\end{frame}

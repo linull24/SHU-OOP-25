@@ -1,0 +1,49 @@
+\section{C++中函数可变参数}
+
+\begin{frame}[fragile]{问题引入}
+  \begin{itemize}
+    \item 如何让构造函数接受1-4个参数，但不想写四个重载函数？
+    \item 其他语言的解决方案：
+    \begin{itemize}
+      \item JavaScript: \texttt{...theArgs}
+      \item Python: \texttt{*args, **kwargs}
+      \item Go: \texttt{...int}
+    \end{itemize}
+    \item C++有没有类似的机制？
+  \end{itemize}
+  \pause
+  \begin{block}{答案}
+    有的，兄弟有的。
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{其他语言的可变参数示例}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{JavaScript}
+    \begin{lstlisting}[language=Java,basicstyle=\tiny\ttfamily]
+function multiply(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+    \end{lstlisting}
+    
+    \textbf{Python}
+    \begin{lstlisting}[language=Python,basicstyle=\tiny\ttfamily]
+def flexible_function(*args, **kwargs):
+    print("Positional args:", args)
+    print("Keyword args:", kwargs)
+    \end{lstlisting}
+    
+    \column{0.5\textwidth}
+    \textbf{Go}
+    \begin{lstlisting}[basicstyle=\tiny\ttfamily]
+func sum(numbers ...int) int {
+    total := 0
+    for _, num := range numbers {
+        total += num
+    }
+    return total
+}
+    \end{lstlisting}
+  \end{columns}
+\end{frame}

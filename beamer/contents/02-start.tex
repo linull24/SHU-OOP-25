@@ -1,0 +1,79 @@
+\section{\LaTeX 启动!}
+
+\begin{frame}{Installation on Microsoft\textsuperscript{\textregistered}\ Windows\textsuperscript{\textregistered}}
+  接下来的操作请拍照保存,并主动寻求staff的协助
+  \begin{enumerate}
+    \item 去一个镜像站\footnote{访问https://mirrors.sjtu.edu.cn/ SHU Mirror在Under Construction}，寻找/CTAN/systems/texlive/Images/目录
+    \item 下载texlive.iso
+    \item 双击挂载，并且按图操作
+  \end{enumerate}
+  \includegraphics[width=0.8\linewidth]{pic/screenshot1.png}
+\end{frame}
+
+\begin{frame}{Installation on Microsoft\textsuperscript{\textregistered}\ Windows\textsuperscript{\textregistered}}
+  接下来的操作请拍照保存,并主动寻求staff的协助
+  \begin{itemize}
+    \item 进入Advanced设置
+  \end{itemize}
+  \includegraphics[width=0.8\linewidth]{pic/screenshot2.png}
+\end{frame}
+\begin{frame}{Installation on Microsoft\textsuperscript{\textregistered}\ Windows\textsuperscript{\textregistered}}
+  接下来的操作请拍照保存,并主动寻求staff的协助
+  \begin{itemize}
+    \item 进入Customize
+  \end{itemize}
+  \includegraphics[width=0.8\linewidth]{pic/screenshot3.png}
+\end{frame}
+\begin{frame}{Installation on Microsoft\textsuperscript{\textregistered}\ Windows\textsuperscript{\textregistered}}
+  接下来的操作请拍照保存,并主动寻求staff的协助
+  \begin{itemize}
+    \item 然后调整安装的包
+  \end{itemize}
+  \includegraphics[width=0.7\linewidth]{pic/screenshot4.png}
+\end{frame}
+\begin{frame}{Installation on Microsoft\textsuperscript{\textregistered} Windows\textsuperscript{\textregistered}}
+  \begin{itemize}
+    \item 点击确定
+    \item 点击安装
+    \item 等待
+    \item \LaTeX 启动! \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f03.png}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Installation on Apple\textsuperscript{\textregistered} macOS\textsuperscript{\textregistered}}
+  \begin{itemize}
+    \item 请在terminal输入brew检查是否有相应的用法输
+    \item 如果没有安装brew，安装brew\footnote{请检查我们在推文和Github发布的pdf版本自行复制}，记得选择清华源
+          %TBD:日后修改为使用SHU自行部署的，选择这个是因为有现成的，日后修改，而且thu sjtu版本的都是bash，现代macos都是默认zsh
+          \begin{lstlisting}
+/bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
+  \end{lstlisting}
+    \item 然后在命令行输入
+          \begin{lstlisting}
+    brew cask install mactex
+  \end{lstlisting}
+    \item \LaTeX 启动! \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f03.png}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{Installation on GNU/Linux}
+  \begin{itemize}
+    \item Do It Yourself
+    \item Hint: Package names: \\
+          \begin{tabular}{|l l|}
+            \hline
+            Distro \qquad\qquad\qquad\qquad                                                                     & 包名                  \\
+            Debian/Ubuntu系                                                                                      & texlive-full        \\
+            RHEL系                                                                                               & texlive-scheme-full \\
+            SUSE系                                                                                               & texlive-scheme-full \\
+            Arch系\footnote{Arch系Distro以拆包少著称，但是texlive也拆了\includegraphics[width=0.03\linewidth]{pic/image.png}} & texlive-most        \\
+            \hline
+          \end{tabular}
+  \end{itemize}
+\end{frame}
+\begin{frame}{Installation on GNU/Linux}
+  ちょっと待って！
+  \begin{itemize}
+    \item 如果您是GNU/Linux用户，可能没有太多必要\dots \includegraphics[width=0.03\linewidth]{pic/image.png}
+    \item 此外我们强烈建议您加入SHUOSC
+  \end{itemize}
+\end{frame}

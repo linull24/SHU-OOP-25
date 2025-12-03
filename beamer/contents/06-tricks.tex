@@ -1,0 +1,77 @@
+\section{Tricks\&Ideas}
+\begin{frame}{Document}
+  这里有一些学习资源\includegraphics[width=0.05\linewidth]{pic/tmp_filei_f24.png}
+  \begin{itemize}
+    \item Overleaf提供的教学\url{https://www.overleaf.com/learn}
+    \item amsmath包文档的中文翻译\url{https://static.latexstudio.net/article/2019/0204/amsmath-guide-zh-cn.pdf}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{坑点注意}
+\begin{itemize}
+  \item 转义字符：\texttt{\# \$ \% \^{} \& \_ \{ \} \~{} \textbackslash{}}需要在前面加反斜杠，防止被错误解析
+  \item 空格有多种，常用有\texttt{\textbackslash{}quad \textbackslash{}\ \textbackslash{}. \textasciitilde}
+  \item 正如前文所言，有的包如果使用ptricks或者eps矢量图，使用luatex会有兼容性问题，需要XeTeX
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Tricks4u}
+\begin{itemize}
+  \item \textbf{模仿}:互联网上的\LaTeX~模板通常年久\sout{甚至不能编译}，内置的example很重要，尽量不要超出原有模板，否则可能会遇到包依赖冲突的问题
+  \item Beamer: \LaTeX 驱动，可以制作非常漂亮的幻灯片(包括本文),\sout{但是会遇到巨量需要加fragile关键字以及兼容性问题}
+  \item 多用记下常用的数学符号以外，要有稳定的查阅语法的地点
+  \item 写一点，编译一点，减少出错的空间
+  \item 使用Git进行版本管理(如果你不会的话，下载文档用git clone，然后用VSCode打开；每次保存时在左侧插件处提交，就可以长期本地保存历史)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{拒绝\LaTeX{},学习\LaTeX{},超越\LaTeX{}}
+\LaTeX 真正的闪光点:\includegraphics[width=0.05\linewidth]{pic/tmp_filei_f03.png}
+\begin{itemize}
+  \item \LaTeX 的声明式——可以稳定复现
+  \item BibTeX 的参考文献管理和稳定的工具链
+  \item 数学公式的美观而快速的处理
+  \item 跨文档，模板与自动化 
+\end{itemize}
+所以，其实我们可以\dots
+\begin{itemize}
+  \item 接受所见即所得——Markdown,KaTeX,Microsoft\textsuperscript{\textregistered}Word\textsuperscript{\textregistered}等工具
+  \item 尝试新兴的增量编译，用现代的\sout{原神}语言Rust,用现代编程范式构建的Typst
+  \item 日常使用KaTeX
+  \item 认真使用Microsoft\textsuperscript{\textregistered}  Word\textsuperscript{\textregistered}
+\end{itemize}
+\end{frame}
+\begin{frame}
+认真使用Microsoft\textsuperscript{\textregistered}  Word\textsuperscript{\textregistered}
+\begin{itemize}
+  \item[样式] 设置word内部的正文和各级标题，可以自动应用
+  \item[引用] 通过word自带的插入-引用，可以插入自动目录、交叉引用、题注
+  \item[书签] 可以自定义样式，并使用超链接
+  \item[子文档]  Word可以使用子文档，类似\LaTeX 的\textbackslash{}include
+  \item[题注]  Word也有自动题注编号等功能\dots
+\end{itemize}
+那么为什么没人用呢？ \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f15.png}
+\begin{itemize}
+  \item Word将复杂度隐藏在交互，\LaTeX 将复杂度隐藏在各种模板格式文件内\sout{总会有前人替你赤石，只不过\LaTeX 实际更直观}
+\end{itemize}
+
+\end{frame}
+\begin{frame}{About us}
+  \begin{columns}
+    \begin{column}{0.65\textwidth}
+      \begin{itemize}
+       \item SHUOSC 上海大学开源社区
+       \item https://github.com/shuosc
+       \item 请关注我们的qq群与其余社交媒体
+       \item 很快会有git活动
+       \item 更多技术分享与集会!\includegraphics[width=0.05\linewidth]{pic/tmp_filei_f24.png}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.35\textwidth}
+      \vspace{-0.5cm}
+      \centering
+      \includegraphics[width=0.9\linewidth]{pic/wechatQR.png} \\
+      \vspace{0.3em}
+      \includegraphics[width=0.9\linewidth]{pic/qqQR.png}
+    \end{column}
+  \end{columns}
+\end{frame}

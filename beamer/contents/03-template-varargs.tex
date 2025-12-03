@@ -1,0 +1,47 @@
+\section{模板可变参数}
+
+\begin{frame}[fragile]{\texttt{typename...}}
+  \begin{itemize}
+    \item 主要用于在模板中声明可变的参数数量
+    \item 配合模板使用，实现类型安全的可变参数
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{Args\&\&...} 与转发引用}
+  \begin{block}{转发引用 (Forwarding Reference)}
+    在模板中，\texttt{\&\&} 的行为与传统的左值右值不同
+  \end{block}
+  
+  \begin{itemize}
+    \item C++中转发的行为：
+  \end{itemize}
+  
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{c c c}
+      \texttt{T\& \&} & $\rightarrow$ & \texttt{T\&} \\
+      \texttt{T\& \&\&} & $\rightarrow$ & \texttt{T\&} \\
+      \texttt{T\&\& \&} & $\rightarrow$ & \texttt{T\&} \\
+      \texttt{T\&\& \&\&} & $\rightarrow$ & \texttt{T\&\&} \\
+    \end{tabular}
+  \end{table}
+  
+  \vspace{1em}
+  传递给 \texttt{T...} 的都会被"完美转发"
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{std::forward} 与 \texttt{std::move}}
+  \begin{block}{\texttt{std::move}}
+    将对象强制转换为右值
+  \end{block}
+  
+  \begin{block}{\texttt{std::forward}}
+    作用类似 \texttt{Args\&\&...}，在调用过程中保留左值/右值属性
+  \end{block}
+  
+  \vspace{1em}
+  \begin{itemize}
+    \item \texttt{std::move}: 无条件转换为右值
+    \item \texttt{std::forward}: 条件转发，保持原有值类别
+  \end{itemize}
+\end{frame}

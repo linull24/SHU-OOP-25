@@ -1,0 +1,363 @@
+\section{Basic Grammer}
+\begin{frame}[fragile]{文件结构}
+  \begin{lstlisting}[basicstyle=\ttfamily]
+\documentclass[a4paper]{ctexart}
+% 文档类型，如 ctexart，[]内是选项，如 a4paper
+% 这里开始是导言区
+\usepackage{graphicx} % 引用宏包
+\graphicspath{{fig/}} % 设置图片目录
+% 导言区到此为止
+\begin{document}
+这里开始是正文
+\end{document}
+  \end{lstlisting}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX{}"命令"}
+  \framesubtitle{\emph{宏} (Macro)、或者\emph{控制序列} (control sequence)}
+\begin{itemize}
+\item 简单命令
+  \begin{itemize}
+    \item \verb|\命令|\hspace{2em}
+    \verb|{\songti 中国人民解放军}| ~$\Rightarrow$ {\songti 中国人民解放军}
+  \item \verb|\命令[可选参数]{必选参数}|\\
+\verb|\section[精简标题]{这个题目实在太长了放到目录里面不太好看}|\\
+$\Rightarrow$ {\heiti 1.1 \hspace{1em} \songti 这个题目实在太长了放到目录里面不太好看}
+  \end{itemize}
+\item 环境
+  \begin{columns}[c]
+  \begin{column}{0.45\textwidth}
+    \begin{lstlisting}[basicstyle=\ttfamily]
+\begin{equation*}
+  a^2-b^2=(a+b)(a-b)
+\end{equation*}
+\end{lstlisting}
+\end{column}\hspace{1em}
+  \begin{column}{0.45\textwidth}
+$ a^2-b^2=(a+b)(a-b)$
+\end{column}
+  \end{columns}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX{} 常用命令}
+  \begin{exampleblock}{简单命令}
+\centering
+\footnotesize
+  \begin{tabular}{llll}
+    \cmd{chapter} & \cmd{section} & \cmd{subsection} & \cmd{paragraph} \\
+    章 & 节 & 小节 & 带题头段落 \\\hline
+    \cmd{centering} & \cmd{emph} & \cmd{verb} & \cmd{url} \\
+   居中对齐         &  强调      & 原样输出   & 超链接 \\\hline
+  \cmd{footnote} & \cmd{item} & \cmd{caption} & \cmd{includegraphics} \\
+   脚注 & 列表条目 & 标题 & 插入图片 \\\hline
+  \cmd{label} & \cmd{cite} & \cmd{ref} \\
+  标号 & 引用参考文献 & 引用图表公式等\\\hline
+  \end{tabular}
+\end{exampleblock}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX{} 常用命令}
+\begin{exampleblock}{环境}
+\centering
+\footnotesize
+\begin{tabular}{lll}
+  \env{table} & \env{figure} & \env{equation}\\
+  表格 & 图片 & 公式 \\\hline
+  \env{itemize} & \env{enumerate} & \env{description}\\
+  无编号列表 & 编号列表 & 描述 \\\hline
+\end{tabular}
+\end{exampleblock}
+\end{frame}
+%
+\begin{frame}{\LaTeX{}命令举例}
+\cmd{chapter}{前言}{{\heiti 第 1 章\hspace{1em} 前言}} \\
+\cmd{section[精简标题]}{这个题目实在太长了放到目录里面不太好看}{{\heiti 1.1
+  \hspace{1em} 这个题目实在太长了放到目录里面不太好看}} \\
+\cmd{footnote}{脚注}{何意味?\footnote{我是可爱的脚注}}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX{} 环境举例}
+  \begin{minipage}{0.4\linewidth}
+    \begin{lstlisting}[basicstyle=\ttfamily\small]
+\begin{itemize}
+  \item 一条
+  \item 次条
+  \item 这一条可以分为 ...
+    \begin{itemize}
+      \item 子一条
+    \end{itemize}
+\end{itemize}
+\end{lstlisting}
+  \end{minipage}\hspace{1.5cm}
+  \begin{minipage}{0.4\linewidth}
+\begin{itemize}
+  \item 一条
+  \item 次条
+  \item 这一条可以分为 ...
+    \begin{itemize}
+      \item 子一条
+    \end{itemize}
+\end{itemize}
+  \end{minipage}
+\medskip
+
+  \begin{minipage}{0.4\linewidth}
+\begin{lstlisting}
+\begin{enumerate}
+  \item 一条
+  \item 次条
+  \item 再条
+\end{enumerate}
+\end{lstlisting}
+  \end{minipage}\hspace{1.5cm}
+  \begin{minipage}{0.4\linewidth}
+\begin{enumerate}
+  \item 一条
+  \item 次条
+  \item 再条
+\end{enumerate}
+  \end{minipage}
+\end{frame}
+%
+
+\begin{frame}[fragile]{\LaTeX{} 数学公式}
+
+\begin{columns}
+\begin{column}{.5\textwidth}
+\begin{lstlisting}[basicstyle=\ttfamily\small]
+$V = \frac{4}{3}\pi r^3$
+
+\[
+  V = \frac{4}{3}\pi r^3
+\]
+
+\begin{equation}
+\label{eq:vsphere}
+V = \frac{4}{3}\pi r^3
+\end{equation}
+\end{lstlisting}
+\end{column}
+
+\begin{column}{.5\textwidth}
+$V = \frac{4}{3}\pi r^3$
+
+\[
+  V = \frac{4}{3}\pi r^3
+\]
+
+\begin{equation}
+\label{eq:vsphere}
+V = \frac{4}{3}\pi r^3
+\end{equation}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}{\LaTeX{} 数学公式}
+  \LaTeX{} 的核心优势：高质量数学排版。
+  需加载宏包：\texttt{amsmath}
+  公式模式：
+  \begin{itemize}
+    \item 行内公式：用 \texttt{\$}\,公式\,\texttt{\$}  
+    例如：\texttt{\$a\textasciicircum2 + b\textasciicircum2 = c\textasciicircum2\$}  
+    显示为：$a^2 + b^2 = c^2$
+    \item 行间公式（推荐）：
+    \texttt{\textbackslash[\, 公式 \textbackslash]} \\
+    （避免使用 \texttt{\$\$}，与 \texttt{amsmath} 不兼容）
+    \item 自动编号：\texttt{equation} 环境 \\
+              多行对齐：\texttt{align}、\texttt{gather} 等
+    \item 查找符号：
+    \item 终端命令：\texttt{texdoc symbols}
+    \item 综合手册：\texttt{comprehensive}（S. Pakin） \\
+    \url{https://ctan.org/text/comprehensive}
+    \item 手绘识别：Detexify \\
+    \url{http://detexify.kirelabs.org}
+    \item 提示：MathType 可导出 \LaTeX{}，但是不被推荐
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{层次与目录生成}
+    \begin{columns}
+    \begin{column}{.6\textwidth}
+    \begin{lstlisting}[basicstyle=\ttfamily\small]
+\tableofcontents
+\part{范畴基础}
+\chapter{函子与自然变换}
+\section{函子}
+\subsection{Hom 函子}
+\subsubsection{表示对象}
+\paragraph{Yoneda 引理}
+\subparagraph{嵌入定理}
+    \end{lstlisting}
+    \end{column}
+    \begin{column}{.4\textwidth}
+    第一部分\quad 范畴基础 \\
+    第一章\quad 函子与自然变换 \\
+    1. 函子 \\
+    1.1 Hom 函子 \\
+    1.1.1 表示对象 \\
+    Yoneda 引理 \\
+    嵌入定理
+    \end{column}
+    \end{columns}
+\end{frame}
+    
+    \begin{frame}[fragile]{列表与枚举}
+    \begin{columns}
+    \begin{column}{.6\textwidth}
+    \begin{lstlisting}[basicstyle=\ttfamily\small]
+    \begin{enumerate}
+    \item \LaTeX{} 好处都有啥
+      \begin{description}
+        \item[好用] 体验好才是真的好
+        \item[好看] 强迫症的福音
+        \item[开源] 众人拾柴火焰高
+      \end{description}
+    \item 还有呢?
+      \begin{itemize}
+        \item 好处 1
+        \item 好处 2
+      \end{itemize}
+    \end{enumerate}
+    \end{lstlisting}
+    \end{column}
+    \begin{column}{.4\textwidth}
+    {\small
+    \begin{enumerate}
+    \item \LaTeX{} 好处都有啥
+      \begin{description}
+        \item[好用] 体验好才是真的好
+        \item[好看] 治疗强迫症
+        \item[开源] 众人拾柴火焰高
+      \end{description}
+    \item 还有呢?
+      \begin{itemize}
+        \item 好处 1
+        \item 好处 2
+      \end{itemize}
+    \end{enumerate}
+    }
+    \end{column}
+    \end{columns}
+    
+    \end{frame}
+\begin{frame}[fragile]{交叉引用与插入插图}
+      \begin{itemize}
+      \item 给对象命名：图片、表格、公式等\\
+      \cmd{label\{name\}}
+    \item 引用对象\\
+      \cmd{ref\{name\}}
+      \end{itemize}
+    \bigskip
+    
+      \begin{minipage}{0.7\linewidth}
+        \begin{lstlisting}
+    SHUOSC徽请参见图~\ref{fig:lib}
+    \begin{figure}[htbp]
+      \centering
+      \includegraphics[height=.2\textheight]%
+      {pic/shuosc.png}
+      \caption{SHUOSC徽章}
+      \label{fig:lib}
+    \end{figure}
+    \end{lstlisting}
+      \end{minipage}\hfill
+      \begin{minipage}{0.3\linewidth}\centering
+        {\songti SHUOSC徽章请参见图~1。}\\[1em]
+     \includegraphics[height=0.2\textheight]{pic/shuosc.png}\\
+     {\footnotesize\heiti 图~1. SHUOSC徽章。}
+      \end{minipage}
+    \end{frame}
+\begin{frame}[fragile]{交叉引用与插入表格}
+      \begin{columns}
+      \column{.6\textwidth}
+      \begin{lstlisting}
+    \begin{table}[htbp]
+       \caption{编号与含义}
+       \label{tab:number}
+       \centering
+       \begin{tabular}{cl}
+         \toprule
+         编号 & 含义 \\
+         \midrule
+         1    & 第一 \\
+         2    & 第二 \\
+         \bottomrule
+       \end{tabular}
+    \end{table}
+
+    \end{lstlisting}
+    \column{.4\textwidth}
+    \centering
+    {\small 表~1. 编号与含义}\\[2pt]
+    \begin{tabular}{cl}\toprule
+    编号 & 含义 \\\midrule
+    1 & 第一\\
+    2  & 第二\\\bottomrule
+    \end{tabular}\\[5pt]
+    
+      \end{columns}
+    \end{frame}
+
+ \begin{frame}[fragile]{作图与插图}
+      \begin{itemize}
+        \item 外部插入
+    
+          \begin{itemize}
+            \item Mathematica、MATLAB
+            \item PowerPoint、Visio、Adobe Illustrator、Inkscape
+            \item Python \texttt{Matplotlib} 库、\texttt{Plots.jl}、R、Plotly 等
+            \item draw.io \url{https://draw.io/}、ProcessOn \url{https://www.processon.com/} 等在线绘图网站
+          \end{itemize}
+    
+        \item \TeX{} 内联
+    
+          \begin{itemize}
+            \item Asymptote
+            \item \alert{\texttt{pgf}/\texttt{TikZ}、\texttt{pgfplots}}
+          \end{itemize}
+    
+        \item 插图格式
+    
+          \begin{itemize}
+            \item 矢量图：|.pdf|
+            \item 位图：|.jpg| 或 |.png|
+            \item \alert{不再推荐 \texttt{.eps}}
+            \item 不（完全）支持 |.svg|、|.bmp|
+          \end{itemize}
+        \scriptsize
+        \item 一些参考：\url{https://www.zhihu.com/question/21664179}
+                        \url{https://tex.stackexchange.com/q/158668}
+                        \url{https://tex.stackexchange.com/q/72930}
+      \end{itemize}
+    \end{frame}
+ \begin{frame}[fragile]{引用和参考文献}
+  \scriptsize
+      \begin{columns}
+        \begin{column}{0.45\textwidth}
+          
+          \vspace{-0.3cm}
+          \begin{itemize}
+            \item \LaTeX{} 中的参考文献由\emph{文献数据库}（即 |.bib| 文件）生成
+            \item 向数据库添加文献条目的方法：
+              \begin{itemize}
+                \item 使用 Mendely、Zotero、NoteExpress 等软件导出为 |.bib| 文件
+                \item 从 Google Scholar、MathSciNet、ACM DL 等在线数据库导出
+                \item 手工编写条目（不推荐）
+              \end{itemize}
+          \end{itemize}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+          \begin{lstlisting}[basicstyle=\scriptsize]
+    @article{mellinger1996laser,
+      author     = {Mellinger, A and Vidal, C R and Jungen, {Ch}},
+      title      = {Laser reduced fluorescence study of the carbon monoxide nd triplet Rydberg series},
+      journal    = {J Chem Phys},
+      year       = {1996},
+      volume     = {104},
+      pages      = {8913--8921},
+    }
+            \end{lstlisting}
+        \end{column}
+      \end{columns}
+      \begin{itemize}
+        
+        \item 在正文中使用 \cmd{cite\{key1, key2\}}引用条目，并在最后使用 \cmd{bibliography\{bibfile\}} 命令打印参考文献列表
+        \item BibTeX 可生成各种不同格式的引用和参考文献（需要宏包支持）：APA、MLA、GB/T 7714 等
+        \end{itemize}
+    \end{frame}

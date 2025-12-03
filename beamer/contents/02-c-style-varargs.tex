@@ -1,0 +1,37 @@
+\section{C风格可变参数}
+
+\begin{frame}[fragile]{C风格的 \texttt{...}}
+  \begin{itemize}
+    \item C风格的变长参数函数，参数列表后面出现省略号
+    \item 例如：\texttt{printf(char *,...format)}
+  \end{itemize}
+  
+  \begin{block}{\texttt{cstdarg} 提供的工具}
+    \begin{table}[h]
+      \tiny
+      \begin{tabular}{l|l|l}
+        \hline
+        \textbf{类型/宏} & \textbf{描述} & \textbf{备注} \\
+        \hline
+        \texttt{va\_list} & 存储变长参数所需的信息 & \texttt{typedef} \\
+        \texttt{va\_start} & 启用对变长函数参数的访问 & 函数宏 \\
+        \texttt{va\_arg} & 访问下一个变长函数参数 & 函数宏 \\
+        \texttt{va\_copy} & 复制变长函数参数 & C++11起支持，函数宏 \\
+        \texttt{va\_end} & 结束变长函数参数的遍历 & 函数宏 \\
+        \hline
+      \end{tabular}
+    \end{table}
+  \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{printf 的实现风格}
+  \begin{lstlisting}[language=C++,basicstyle=\small\ttfamily]
+__BEGIN_DECLS
+int printf(const char * __restrict, ...) 
+       __printflike(1, 2);
+__END_DECLS
+  \end{lstlisting}
+  
+  \vspace{1em}
+  就是使用了这种C风格的可变参数。
+\end{frame}

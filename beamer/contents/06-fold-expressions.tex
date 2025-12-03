@@ -1,0 +1,23 @@
+\section{折叠表达式}
+
+\begin{frame}[fragile]{折叠表达式 (C++17)}
+  \begin{block}{简化可变参数模板的处理}
+    折叠表达式提供了一种简洁的方式来处理参数包
+  \end{block}
+\end{frame}
+
+\begin{frame}{折叠表达式类型}
+  \centering
+  \includegraphics[height=0.5\textheight]{pic/aaa.png}
+\end{frame}
+
+\begin{frame}[fragile]{总结}
+  \begin{itemize}
+    \item C风格：\texttt{va\_list}, \texttt{va\_start}, \texttt{va\_arg}, \texttt{va\_end}
+    \item 模板可变参数：\texttt{typename...}, \texttt{Args\&\&...}
+    \item 完美转发：\texttt{std::forward}, \texttt{std::move}
+    \item 类型约束：\texttt{static\_assert}, \texttt{concept}
+    \item 同类型场景：\texttt{std::initializer\_list}
+    \item 折叠表达式：C++17引入，简化参数包处理
+  \end{itemize}
+\end{frame}

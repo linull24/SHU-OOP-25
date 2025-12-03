@@ -1,0 +1,83 @@
+\section{\LaTeX~Intro}
+\begin{frame}[fragile]{\LaTeX 何意味？}
+
+  \LaTeX 是 \dots \qquad \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f15.png}
+  \cite{origin}
+  \begin{itemize}
+    \item \TeX\  is not so far
+          \begin{example}
+            In Markdown.....\sout{the LLM Language}
+            \begin{lstlisting}[basicstyle=\ttfamily\footnotesize]
+转移概率仅依赖当前状态：
+\[
+P(\mathbf{d}(t+1) | \mathbf{d}(t), \mathbf{d}(t-1),...
+\]
+        \end{lstlisting}
+          \end{example}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX 何意味？}
+
+  \LaTeX 是 \dots \qquad \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f15.png}
+  \begin{itemize}
+    \item \TeX\  is not so far
+          \begin{example}
+            And the perfect mathematic display \dots
+            \[
+              P(\mathbf{d}(t+1) | \mathbf{d}(t), \mathbf{d}(t-1), \dots) = P(\mathbf{d}(t+1) | \mathbf{d}(t))
+            \]
+          \end{example}
+  \end{itemize}
+\end{frame}
+\begin{frame}[fragile]{\LaTeX 何意味？}
+  \LaTeX 是 \dots \qquad \includegraphics[width=0.05\linewidth]{pic/tmp_filei_f15.png}
+  \begin{itemize}
+    \item \TeX\  is not so far
+    \item KaTeX是你已经在用的Fomula rendering,但是Limited function\includegraphics[width=0.05\linewidth]{pic/tmp_filei_f03.png}
+    \item \TeX
+          \begin{itemize}
+            \item \TeX 的基础是宏Macro——The input and output may be a sequence of lexical tokens or characters, or a syntax tree
+            \item \TeX 的排版是工业事实标准
+            \item \TeX 的设计不算现代,因为驱动的是Pascal,甚至是更加古早的SAIL(Stanford AI Language)\includegraphics[width=0.05\linewidth]{pic/image.png}
+          \end{itemize}
+  \end{itemize}
+\end{frame}
+\begin{frame}{\LaTeX 何意味？}
+  でも\dots \\
+  1985年,Leslie\ Lamport开发了\LaTeX\ ,好时代,来临力 \\
+  \begin{table}[h]
+
+    \footnotesize
+    
+    \begin{tabular}{l l l}
+      \hline
+      \textbf{引擎} & \textbf{中文兼容性} & \textbf{说明}                           \\
+      \hline
+      XeTeX       & \textbf{最佳}    & 推荐使用；\texttt{xeCJK} 稳定，与主流宏包兼容性好，极少出错 \\
+      LuaTeX      & \textbf{良好}    & 面向未来；功能强，但部分旧库/复杂排版偶现兼容问题             \\
+      pdfTeX      & \textbf{很差}    & 不推荐；依赖过时的 \texttt{CJK} 宏包，无法直接用系统字体   \\
+      \hline
+    \end{tabular}
+  \end{table}
+\end{frame}
+
+\begin{frame}{\LaTeX 大战 Microsoft\textsuperscript{\textregistered}Word}
+  注：术业有专攻，评价需客观 \footnote{\sout{偷自TsingHuaUniversity讲稿}}
+  \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c}
+      Microsoft\textsuperscript{\textregistered}  Word & \LaTeX        \\
+      \hline
+      字处理工具                                            & 专业排版软件        \\
+      容易上手，简单直观                                        & 容易上手          \\
+      所见即所得                                            & 所见即所想，所想即所得   \\
+      高级功能不易掌握                                         & 进阶难，但一般用不到    \\
+      处理长文档需要丰富经验                                      & 和短文档处理基本无异    \\
+      花费大量时间调格式                                        & 无需担心格式，专心作者内容 \\
+      公式排版差强人意                                         & 尤其擅长公式排版      \\
+      二进制格式，兼容性差                                       & 文本文件，易读、稳定    \\
+      付费商业许可                                           & 自由免费使用        \\
+    \end{tabular}
+  \end{table}
+
+\end{frame}

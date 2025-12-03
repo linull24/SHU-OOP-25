@@ -1,0 +1,58 @@
+\section{类型约束机制}
+
+\begin{frame}[fragile]{\texttt{assert}}
+  \begin{block}{运行时检查}
+    调试用的工具，在\textbf{运行时}检查条件
+  \end{block}
+  
+  \begin{lstlisting}[language=C++,basicstyle=\small\ttfamily]
+x = 114514;
+assert(x >= 0 && x < 100);
+// 运行时如果x不满足条件，就报错
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{static\_assert}}
+  \begin{block}{编译时检查}
+    调试用的工具，在\textbf{编译时}检查，C++11引入
+  \end{block}
+  
+  \begin{lstlisting}[language=C++,basicstyle=\small\ttfamily]
+static_assert(sizeof(int) == 4, 
+    "This code requires int to be 4 bytes");
+// 编译时报错
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{\texttt{concept}}
+  \begin{block}{C++20引入}
+    主要用于模板的类型约束检查
+  \end{block}
+  
+  \begin{itemize}
+    \item Concept本质是一个模板类型的bool变量
+    \item 定义concept = 定义一个bool类型的编译期变量
+    \item 使用concept = 利用SFINAE机制约束模板类型
+    \item \textbf{SFINAE}: Substitution Failure Is Not An Error
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Concept 示例}
+  使用Concept：
+  \begin{lstlisting}[language=C++,basicstyle=\small\ttfamily]
+template<std::integral T>  
+T add_original(T a, T b) {
+    return a + b;
+}
+  \end{lstlisting}
+  
+  \vspace{1em}
+  等价于：
+  \begin{lstlisting}[language=C++,basicstyle=\tiny\ttfamily]
+template <typename T, 
+    std::enable_if_t<std::is_integral_v<T>, int> = 0>
+T add_original(T a, T b) {
+    return a + b;
+}
+  \end{lstlisting}
+\end{frame}

@@ -1,0 +1,80 @@
+%!TeX encoding = utf8
+%!TEX program = xelatex
+\documentclass{beamer}
+\usepackage{ctex, hyperref}
+\usepackage{xurl}
+\renewcommand\UrlFont{\rmfamily}
+
+% other packages
+\usepackage{latexsym,amsmath,multicol,booktabs,calligra,ulem}
+\usepackage[table]{xcolor}
+\usepackage{graphicx,pstricks,listings,stackengine}
+
+\author{第九组}
+\title{C++函数可变参数}
+\subtitle{SHU OOP Week 2}
+\institute{SHUCES}
+\date{2025}
+\usepackage[SHU]{SHU} %选择背景: cirno or SHU, 以及是否shuosclogo
+
+
+% defs 
+\def\cmd#1{\texttt{\color{red}\footnotesize $\backslash$#1}}
+\def\env#1{\texttt{\color{blue}\footnotesize #1}}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.5,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+\definecolor{halfgray}{gray}{0.55}
+\definecolor{primaryL}{RGB}{0,66,126}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    keywordstyle=\bfseries\color{deepblue},
+    breaklines=true,
+    emphstyle=\ttfamily\color{deepred},
+    stringstyle=\color{deepgreen},
+    numbers=left,
+    numberstyle=\small\color{halfgray},
+    rulesepcolor=\color{red!20!green!20!blue!20},
+    frame=shadowbox,
+    inputencoding=utf8,
+}
+\lstdefinestyle{cjk}{
+    basicstyle=\small\ttfamily\CJKfamily{zhsong},
+}
+
+
+\begin{document}
+
+% *******************************************
+% COVER FRAME
+% ******************************************* 
+\kaishu
+\begin{frame}
+  \begin{figure}[htpb]
+    \begin{center}
+      \includegraphics[width=0.4\linewidth]{pic/SHU_Logo.eps}%
+      \shuosclogocover
+    \end{center}
+  \end{figure}
+  \titlepage%生成封面帧
+\end{frame}
+
+% *******************************************
+% CATALOGUE
+% ******************************************* 
+\begin{frame}
+  \tableofcontents[sectionstyle=show,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+\end{frame}
+
+% *******************************************
+% CONTENT SECTIONS
+% ******************************************* 
+\input{contents/01-multiargs-intro}
+\input{contents/02-c-style-varargs}
+\input{contents/03-template-varargs}
+\input{contents/04-assert-concept}
+\input{contents/05-initializer-list}
+\input{contents/06-fold-expressions}
+
+\end{document}
