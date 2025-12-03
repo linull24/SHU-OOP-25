@@ -3,3 +3,4 @@ dist
 output
 src/frontend/wasm-inline.js
 build
+report
