@@ -2,52 +2,69 @@
 #include <string>
 #include <vector>
 
-struct ListNode {
+class ListNode {
+private:
     int id;
     std::string value;
     ListNode* next;
+    
     ListNode(int id, const std::string& val) : id(id), value(val), next(nullptr) {}
+    ~ListNode() = default;
+    
+    friend class LinkedList;
 };
 
 class LinkedList {
 private:
     ListNode* head;
     int size, nextId;
-    std::vector<ListNode*> registered;
+    std::vector<ListNode*> nodes;  // 维护所有节点的所有权
 
 public:
     LinkedList() : head(nullptr), size(0), nextId(1) {}
-    ~LinkedList() { for (auto n : registered) delete n; }
+    ~LinkedList() { for (auto n : nodes) delete n; }
     
-    void insertHead(const std::string& value) {
-        auto n = new ListNode(nextId++, value);
-        n->next = head;
-        head = n;
-        registered.push_back(n);
-        size++;
+    bool isIdExists(int id) const {
+        for (auto c = head; c; c = c->next)
+            if (c->id == id) return true;
+        return false;
     }
     
-    void insertTail(const std::string& value) {
-        auto n = new ListNode(nextId++, value);
+    void insertHead(const std::string& value, int customId = -1) {
+        int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
+        auto n = new ListNode(id, value);
+        nodes.push_back(n);
+        n->next = head;
+        head = n;
+        size++;
+        if (id >= nextId) nextId = id + 1;
+    }
+    
+    void insertTail(const std::string& value, int customId = -1) {
+        int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
+        auto n = new ListNode(id, value);
+        nodes.push_back(n);
         if (!head) head = n;
         else {
             auto c = head;
             while (c->next) c = c->next;
             c->next = n;
         }
-        registered.push_back(n);
         size++;
+        if (id >= nextId) nextId = id + 1;
     }
     
-    void insertAfterId(int targetId, const std::string& value) {
+    void insertAfterId(int targetId, const std::string& value, int customId = -1) {
         auto c = head;
         while (c && c->id != targetId) c = c->next;
         if (!c) return;
-        auto n = new ListNode(nextId++, value);
+        int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
+        auto n = new ListNode(id, value);
+        nodes.push_back(n);
         n->next = c->next;
         c->next = n;
-        registered.push_back(n);
         size++;
+        if (id >= nextId) nextId = id + 1;
     }
     
     bool deleteById(int id) {
@@ -60,10 +77,10 @@ public:
     }
     
     void clear() {
-        for (auto n : registered) delete n;
+        for (auto n : nodes) delete n;
+        nodes.clear();
         head = nullptr;
-        registered.clear();
-        size = nextId = 0;
+        size = 0;
         nextId = 1;
     }
     
@@ -110,6 +127,26 @@ public:
     }
     
 
+    
+    void sortById() {
+        if (!head || !head->next) return;
+        for (auto i = head; i; i = i->next)
+            for (auto j = i->next; j; j = j->next)
+                if (i->id > j->id) {
+                    std::swap(i->id, j->id);
+                    std::swap(i->value, j->value);
+                }
+    }
+    
+    void sortByValue() {
+        if (!head || !head->next) return;
+        for (auto i = head; i; i = i->next)
+            for (auto j = i->next; j; j = j->next)
+                if (i->value > j->value) {
+                    std::swap(i->id, j->id);
+                    std::swap(i->value, j->value);
+                }
+    }
     
     std::string toMermaid() const {
         std::string r = "graph LR\n    head[head]";

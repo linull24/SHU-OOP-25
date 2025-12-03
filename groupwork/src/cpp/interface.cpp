@@ -16,5 +16,8 @@ EMSCRIPTEN_BINDINGS(linked_list) {
         .function("getMaxValue", &LinkedList::getMaxValue)
         .function("isSingleChain", &LinkedList::isSingleChain)
         .function("reverse", &LinkedList::reverse)
+        .function("sortById", &LinkedList::sortById)
+        .function("sortByValue", &LinkedList::sortByValue)
+        .function("isIdExists", &LinkedList::isIdExists)
         .function("toMermaid", &LinkedList::toMermaid);
 }

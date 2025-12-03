@@ -3,6 +3,7 @@
   import '@material/web/button/filled-button';
   import '@material/web/button/outlined-button';
   import '@material/web/textfield/filled-text-field';
+
   import { onMount } from 'svelte';
   import wasmModule from './wasm-inline.js';
   import mermaid from 'mermaid';
@@ -11,8 +12,10 @@
   let list = null;
   let ready = false;
   let output = '';
-  let value = '', insertId = 0, deleteId = 0;
+  let value = '', insertId = '', deleteId = '', customId = '', targetId = '';
   let diagramEl;
+  let showPositionInput = false;
+  let positionTimeout = null;
 
   onMount(async () => {
     applyBlueTheme();
@@ -40,12 +43,47 @@
     refresh();
   });
 
-  const insertHead = () => { list.insertHead(value); value = ''; refresh(); };
-  const insertTail = () => { list.insertTail(value); value = ''; refresh(); };
-  const insertAfter = () => { list.insertAfterId(insertId, value); value = ''; refresh(); };
-  const deleteNode = () => { list.deleteById(deleteId); refresh(); };
+  const validateId = (id) => {
+    const num = parseInt(id);
+    return (!id || isNaN(num) || num <= 0) ? -1 : num;
+  };
+
+  const insertHead = () => { list.insertHead(value, validateId(insertId)); value = ''; insertId = ''; refresh(); };
+  const insertTail = () => { list.insertTail(value, validateId(insertId)); value = ''; insertId = ''; refresh(); };
+
+  const handleInsertAfterHover = () => {
+    showPositionInput = true;
+    if (positionTimeout) clearTimeout(positionTimeout);
+    positionTimeout = setTimeout(() => {
+      showPositionInput = false;
+    }, 2000);
+  };
+  
+  const handlePositionInput = (e) => {
+    targetId = e.target.value;
+    if (positionTimeout) clearTimeout(positionTimeout);
+    positionTimeout = setTimeout(() => {
+      showPositionInput = false;
+    }, 2000);
+  };
+  
+  const quickInsertAfter = () => {
+    const tid = validateId(targetId);
+    if (tid > 0 && value) {
+      list.insertAfterId(tid, value, validateId(customId));
+      value = ''; customId = ''; targetId = '';
+      showPositionInput = false;
+      if (positionTimeout) clearTimeout(positionTimeout);
+      refresh();
+    }
+  };
+  
+
+  const deleteNode = () => { list.deleteById(validateId(deleteId)); deleteId = ''; refresh(); };
   const reverse = () => { list.reverse(); refresh(); };
   const clear = () => { list.clear(); refresh(); };
+  const sortById = () => { list.sortById(); refresh(); };
+  const sortByValue = () => { list.sortByValue(); refresh(); };
   const refresh = async () => {
     const minVal = list.getMinValue(), maxVal = list.getMaxValue();
     output = `Count: ${list.count()} | ${minVal ? `Min: ${minVal} | Max: ${maxVal}` : 'N/A'} | Single Chain: ${list.isSingleChain()}`;
@@ -67,22 +105,36 @@
   {#if ready}
     <div class="card">
       <div class="controls">
-        <md-filled-text-field label="ID" type="number" value={insertId} on:input={(e) => insertId = Number(e.target.value)}></md-filled-text-field>
+        <md-filled-text-field label="Custom ID (optional)" type="number" value={insertId} on:input={(e) => insertId = e.target.value}></md-filled-text-field>
         <md-filled-text-field label="Value" value={value} on:input={(e) => value = e.target.value}></md-filled-text-field>
         <div class="button-group">
           <md-filled-button on:click={insertHead}>Head</md-filled-button>
           <span class="divider"></span>
           <md-filled-button on:click={insertTail}>Tail</md-filled-button>
         </div>
-        <md-filled-button on:click={insertAfter}>Insert After</md-filled-button>
+        <div class="insert-after-wrapper" on:mouseenter={handleInsertAfterHover}>
+          {#if showPositionInput}
+            <md-filled-text-field 
+              class="position-input" 
+              label="Position" 
+              type="number" 
+              value={targetId} 
+              on:input={handlePositionInput}
+            ></md-filled-text-field>
+          {/if}
+          <md-filled-button on:click={quickInsertAfter}>Insert After</md-filled-button>
+        </div>
       </div>
       <div class="controls">
-        <md-filled-text-field label="Delete ID" type="number" value={deleteId} on:input={(e) => deleteId = Number(e.target.value)}></md-filled-text-field>
+        <md-filled-text-field label="Delete ID" type="number" value={deleteId} on:input={(e) => deleteId = e.target.value}></md-filled-text-field>
         <md-outlined-button on:click={deleteNode}>Delete</md-outlined-button>
         <md-outlined-button on:click={reverse}>Reverse</md-outlined-button>
+        <md-outlined-button on:click={sortById}>Sort by ID</md-outlined-button>
+        <md-outlined-button on:click={sortByValue}>Sort by Value</md-outlined-button>
         <md-outlined-button on:click={clear}>Clear</md-outlined-button>
       </div>
     </div>
+    
     
     <div class="card">
       <div bind:this={diagramEl}></div>
@@ -93,3 +145,16 @@
     </div>
   {/if}
 </main>
+
+<style>
+  md-dialog form { display: flex; flex-direction: column; gap: 16px; padding: 20px 0; }
+  .insert-after-wrapper { position: relative; display: flex; align-items: center; gap: 0.5rem; }
+  .position-input { 
+    width: 120px; 
+    animation: slideIn 0.2s ease-out;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+</style>

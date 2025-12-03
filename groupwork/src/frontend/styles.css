@@ -9,6 +9,11 @@ md-filled-text-field {
   --md-filled-text-field-container-color: var(--md-sys-color-surface-variant);
 }
 
+md-filled-button::part(focus-ring),
+md-outlined-button::part(focus-ring) {
+  display: none;
+}
+
 main { padding: 2rem; min-height: 100vh; }
 .header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 h1 { margin: 0; color: var(--md-sys-color-on-surface); font-size: 2rem; font-weight: 500; }
@@ -20,3 +25,9 @@ h1 { margin: 0; color: var(--md-sys-color-on-surface); font-size: 2rem; font-wei
 .button-group md-filled-button { --md-filled-button-container-shape: 0; flex: 1; }
 .button-group .divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
 .output { background: var(--md-sys-color-surface-variant); padding: 1rem; border-radius: 8px; color: var(--md-sys-color-on-surface-variant); font-family: 'Courier New', monospace; white-space: pre-wrap; }
+
+/* Hide tooltip/position indicator */
+md-filled-button::before,
+md-outlined-button::before {
+  display: none !important;
+}
