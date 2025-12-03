@@ -1,0 +1,22 @@
+body {
+  font-family: 'Roboto', system-ui;
+  background: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  margin: 0;
+}
+
+md-filled-text-field {
+  --md-filled-text-field-container-color: var(--md-sys-color-surface-variant);
+}
+
+main { padding: 2rem; min-height: 100vh; }
+.header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+h1 { margin: 0; color: var(--md-sys-color-on-surface); font-size: 2rem; font-weight: 500; }
+.status { color: var(--md-sys-color-primary); font-size: 0.9rem; }
+.card { background: var(--md-sys-color-surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.controls { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; align-items: center; }
+.controls md-filled-text-field { flex: 1; }
+.button-group { display: flex; align-items: center; background: var(--md-sys-color-primary); border-radius: 50px; overflow: hidden; }
+.button-group md-filled-button { --md-filled-button-container-shape: 0; flex: 1; }
+.button-group .divider { width: 1px; height: 40px; background: rgba(255,255,255,0.3); }
+.output { background: var(--md-sys-color-surface-variant); padding: 1rem; border-radius: 8px; color: var(--md-sys-color-on-surface-variant); font-family: 'Courier New', monospace; white-space: pre-wrap; }

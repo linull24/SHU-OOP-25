@@ -1,0 +1,5 @@
+node_modules
+dist
+output
+src/frontend/wasm-inline.js
+build
