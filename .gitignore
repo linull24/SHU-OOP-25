@@ -42,3 +42,6 @@ a.out
 .DS_Store
 ._*
 Thumbs.db
+
+#pre
+beamer/

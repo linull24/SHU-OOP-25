@@ -14,13 +14,12 @@ Extension:
   * [X] Concepts
   * [ ] Coroutines
   * [ ] RAII
-  * [ ] std::ranges `https://zhuanlan.zhihu.com/p/394454479`
+  * [ ] https://cppguide.cn/pages/cpp20completeguides/
   * [ ] ...?
 * [ ] QEMU Object Module
 * [ ] CPP vtable
 * [ ] chromium containers....?
-* [ ] MariaDB
-  * [X] MariaDB String( Imitated by groupwork)
+* [ ] MariaDB String
   * [ ] Other MariaDB example
 * [ ] CPP virtual function
 * [ ] CPP mixin
