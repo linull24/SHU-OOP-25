@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <algorithm>
 
 class ListNode {
 private:
@@ -18,11 +19,35 @@ class LinkedList {
 private:
     ListNode* head;
     int size, nextId;
-    std::vector<ListNode*> nodes;  // 维护所有节点的所有权
-
+    std::vector<ListNode*> nodes;  
 public:
     LinkedList() : head(nullptr), size(0), nextId(1) {}
-    ~LinkedList() { for (auto n : nodes) delete n; }
+    
+
+    void destroyNode(ListNode* node) {
+        auto it = std::find(nodes.begin(), nodes.end(), node);
+        if (it != nodes.end()) {
+            delete *it; 
+            nodes.erase(it);
+        }
+    }
+    
+
+    void destroyAllNodes() {
+        for (auto n : nodes) delete n; 
+        nodes.clear();
+    }
+    
+    ~LinkedList() { 
+        destroyAllNodes();
+    }
+    
+
+    ListNode* createNode(int id, const std::string& value) {
+        auto n = new ListNode(id, value); 
+        nodes.push_back(n);               
+        return n;
+    }
     
     bool isIdExists(int id) const {
         for (auto c = head; c; c = c->next)
@@ -32,8 +57,7 @@ public:
     
     void insertHead(const std::string& value, int customId = -1) {
         int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
-        auto n = new ListNode(id, value);
-        nodes.push_back(n);
+        auto n = createNode(id, value); 
         n->next = head;
         head = n;
         size++;
@@ -42,8 +66,7 @@ public:
     
     void insertTail(const std::string& value, int customId = -1) {
         int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
-        auto n = new ListNode(id, value);
-        nodes.push_back(n);
+        auto n = createNode(id, value);
         if (!head) head = n;
         else {
             auto c = head;
@@ -59,8 +82,7 @@ public:
         while (c && c->id != targetId) c = c->next;
         if (!c) return;
         int id = (customId > 0 && !isIdExists(customId)) ? customId : nextId;
-        auto n = new ListNode(id, value);
-        nodes.push_back(n);
+        auto n = createNode(id, value);  
         n->next = c->next;
         c->next = n;
         size++;
@@ -69,16 +91,28 @@ public:
     
     bool deleteById(int id) {
         if (!head) return false;
-        if (head->id == id) { head = head->next; size--; return true; }
-        auto c = head;
-        while (c->next && c->next->id != id) c = c->next;
-        if (c->next) { c->next = c->next->next; size--; return true; }
+        ListNode* toDelete = nullptr;
+        if (head->id == id) {
+            toDelete = head;
+            head = head->next;
+        } else {
+            auto c = head;
+            while (c->next && c->next->id != id) c = c->next;
+            if (c->next) {
+                toDelete = c->next;
+                c->next = c->next->next;
+            }
+        }
+        if (toDelete) {
+            destroyNode(toDelete); 
+            size--;
+            return true;
+        }
         return false;
     }
     
     void clear() {
-        for (auto n : nodes) delete n;
-        nodes.clear();
+        destroyAllNodes(); 
         head = nullptr;
         size = 0;
         nextId = 1;
